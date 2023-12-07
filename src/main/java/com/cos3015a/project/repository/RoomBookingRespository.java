@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RoomBookingRespository extends JpaRepository<RoomDTO, Integer> {
+public interface RoomBookingRespository extends JpaRepository<RoomDTO, String> {
     List<RoomDTO> findByBuilding(String building);
 }
