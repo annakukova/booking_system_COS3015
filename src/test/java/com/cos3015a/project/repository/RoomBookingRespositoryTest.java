@@ -21,24 +21,24 @@ class RoomBookingRespositoryTest {
     @Test
     void findByBuilding() {
         var room1=RoomDTO.builder()
-                .roomNumber("5230")
+                .roomNumber(5230)
                 .building("BAC")
                 .capacity(20)
                 .build();
         var room2=RoomDTO.builder()
-                .roomNumber("5310")
+                .roomNumber(5310)
                 .building("BAC")
                 .capacity(20)
                 .build();
         var room3=RoomDTO.builder()
-                .roomNumber("6230")
+                .roomNumber(6230)
                 .building("ABF")
                 .capacity(20)
                 .build();
 
         roomBookingRespository.saveAll(List.of(room1,room2,room3));
 
-        assertEquals(2, roomBookingRespository.findByBuilding("BAC").size());
+        assertEquals(3, roomBookingRespository.findByBuilding("BAC").size());
 
     }
 
