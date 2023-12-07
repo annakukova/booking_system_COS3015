@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>AUBG Room Booking System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #002856;
+      }
+
+      .background-container {
+        background-color: #002856;
+      }
+
+      /* Centered content in the container */
+      .container-form {
+        background-color: #fff; /* Keep the current background color */
+        padding: 20px;
+        margin-bottom: 125px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .center-button {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .btn-booking {
+        background-color: #ed1c24;
+        color: #fff;
+      }
+
+      /* Landing Page Section Styles */
+      .landing-page {
+        text-align: center;
+        /* padding: 100px 0; /* Adjust padding as needed */
+      }
+
+      .landing-title {
+        padding-top: 100px;
+        color: #fff;
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .landing-subtitle {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 30px;
+      }
+
+      /* Button for scrolling down */
+      .btn-scroll-down {
+        background-color: #ed1c24;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .photo-custom {
+        width: 100%;
+        height: 90%;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Landing Page Section -->
+    <div class="landing-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <h1 class="landing-title">AUBG Room Booking Form</h1>
+              <p class="landing-subtitle">
+                The new and easy way to book a room in no time!
+              </p>
+              <button class="btn btn-scroll-down" onclick="scrollTo()">
+                Get Started
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img
+              src="bookingPhoto.jpg"
+              alt="Illustration of a room"
+              class="photo-custom"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container for the Form -->
+    <div class="container background-container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 container-form">
+          <h2 class="mb-4">Room Booking System</h2>
+
+          <form id="bookingForm" onsubmit="return submitForm()">
+            <!-- Building Selection -->
+            <div class="form-group">
+              <label for="buildingSelect">Select Building:</label>
+              <select class="form-control" id="buildingSelect">
+                <option value="ABF">ABF</option>
+                <option value="BAC">BAC</option>
+              </select>
+            </div>
+
+            <!-- Room Selection -->
+            <div class="form-group">
+              <label for="roomSelect">Select Room:</label>
+              <select class="form-control" id="roomSelect">
+                <!-- Room options will be populated dynamically based on the selected building -->
+              </select>
+            </div>
+
+            <!-- Date Selection -->
+            <div class="form-group">
+              <label for="datePicker">Select Date:</label>
+              <input type="date" class="form-control" id="datePicker" />
+            </div>
+
+            <!-- Select Start Time -->
+            <div class="form-group">
+              <label for="timePicker">Select Start Time:</label>
+              <input type="time" class="form-control" id="timePicker" />
+            </div>
+
+            <!-- Select End Time -->
+            <div class="form-group">
+              <label for="endTimePicker">Select End Time:</label>
+              <input
+                type="time"
+                class="form-control"
+                id="endTimePicker"
+                required
+              />
+            </div>
+
+            <!-- Person's Name -->
+            <div class="form-group">
+              <label for="personName">Your Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="personName"
+                placeholder="Enter your name"
+              />
+            </div>
+
+            <!-- Student Id -->
+            <div class="form-group">
+              <label for="studentId">Student ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="studentId"
+                placeholder="Enter your student ID"
+                required
+              />
+            </div>
+
+            <!-- Centered Booking Button -->
+            <div class="center-button">
+              <button
+                type="submit"
+                class="btn btn-booking"
+                onclick="SubmitForm()"
+              >
+                Book Room
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thank You Page -->
+    <div id="thankYouPage" style="display: none" class="landing-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <h1 class="landing-title">Thank You for Submitting!</h1>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img
+              src="bookingPhoto.jpg"
+              alt="Illustration of a room"
+              class="photo-custom"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for scrolling down to the form -->
+    <script>
+      function submitForm() {
+        // Validate form fields
+        var form = document.getElementById("bookingForm");
+        if (form.checkValidity()) {
+          // Form is valid, show thank you page and hide form
+          document.getElementById("bookingForm").style.display = "none";
+          document.getElementById("thankYouPage").style.display = "block";
+          return false; // Prevent form submission
+        } else {
+          // Form is not valid, let the default form submission proceed
+          return true;
+        }
+      }
+
+      function scrollToForm() {
+        document.querySelector(".container-form").scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </body>
+</html>
