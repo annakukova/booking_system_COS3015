@@ -15,7 +15,7 @@ public interface BookingServiceInterface {
 
     RoomDTO addRoom(RoomDTO roomDTO);
 
-    List<BookedDateDTO> getSchedule(int id);
+    List<BookedDateDTO> getSchedule(String id);
 
     List<RoomDTO> getAllRoomsByBulding(String building);
 }

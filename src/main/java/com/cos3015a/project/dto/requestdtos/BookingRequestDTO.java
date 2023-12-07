@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BookingRequestDTO {
-    private int id;
+    private String id;
     private String startingTime;
     private String endingTime;
     private String studentName;

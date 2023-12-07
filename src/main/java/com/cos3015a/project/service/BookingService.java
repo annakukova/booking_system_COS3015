@@ -22,7 +22,7 @@ public class BookingService implements BookingServiceInterface {
     private final RoomBookingRespository roomBookingRespository;
     private final BookingInformationRepository dateBookingRepository;
 
-    private final static String ROOM_NUMBER_PATTERN = "[5-6]\\d{3}";
+    private final static String ROOM_NUMBER_PATTERN = "(?i)[5-6]\\d{3}";
 
     @Override
     public List<RoomDTO> getAllRooms() {
@@ -58,10 +58,10 @@ public class BookingService implements BookingServiceInterface {
 
     @Override
     public RoomDTO addRoom(RoomDTO roomDTO) {
-        if(!String.valueOf(roomDTO.getRoomNumber()).matches(ROOM_NUMBER_PATTERN)){
+        if(!roomDTO.getRoomNumber().matches(ROOM_NUMBER_PATTERN)){
             throw new InvalidRoomNumberException();
         }
-        if(String.valueOf(roomDTO.getRoomNumber()).charAt(0)=='6'){
+        if(roomDTO.getRoomNumber().charAt(0)=='6'){
             roomDTO.setBuilding("ABF");
         }
         else{
@@ -72,7 +72,7 @@ public class BookingService implements BookingServiceInterface {
     }
 
     @Override
-    public List<BookedDateDTO> getSchedule(int id) {
+    public List<BookedDateDTO> getSchedule(String id) {
         return roomBookingRespository
                 .findById(id)
                 .orElseThrow(RoomNotFoundException::new)
@@ -81,7 +81,7 @@ public class BookingService implements BookingServiceInterface {
 
     @Override
     public List<RoomDTO> getAllRoomsByBulding(String building) {
-        if(!(building.equals("BAC") || building.equals("ABF"))){
+        if(!(building.equalsIgnoreCase("BAC") || building.equalsIgnoreCase("ABF"))){
             throw new WrongBuldingNameException();
         }
         return roomBookingRespository.findByBuilding(building);

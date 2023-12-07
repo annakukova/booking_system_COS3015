@@ -35,7 +35,7 @@ public class BookingController {
         return ResponseEntity.ok().body(bookingServiceInterface.addRoom(roomDTO));
     }
     @GetMapping("/getschedule/{id}")
-    public ResponseEntity<List<BookedDateDTO>> getSchedule(@PathVariable int id){
+    public ResponseEntity<List<BookedDateDTO>> getSchedule(@PathVariable String id){
         return ResponseEntity.ok().body(bookingServiceInterface.getSchedule(id));
     }
 }
