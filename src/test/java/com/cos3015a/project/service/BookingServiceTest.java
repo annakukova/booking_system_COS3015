@@ -28,24 +28,24 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class BookingServiceTest {
 
-    private static List<RoomDTO> rooms = List.of(
+    private static final List<RoomDTO> rooms = List.of(
             RoomDTO.builder()
                     .building("BAC")
-                    .roomNumber("5230")
+                    .roomNumber(5230)
                     .capacity(20)
                     .bookedDates(new ArrayList<>())
                     .build(),
 
             RoomDTO.builder()
                     .building("BAC")
-                    .roomNumber("5203")
+                    .roomNumber(5203)
                     .capacity(20)
                     .bookedDates(new ArrayList<>())
                     .build(),
 
             RoomDTO.builder()
                     .building("BAF")
-                    .roomNumber("6512")
+                    .roomNumber(6512)
                     .capacity(20)
                     .bookedDates(new ArrayList<>())
                     .build()
@@ -85,14 +85,14 @@ class BookingServiceTest {
         when(mockBookingRepository.findByBuilding(building)).thenReturn(List.of(
                 RoomDTO.builder()
                         .building(building)
-                        .roomNumber("5230")
+                        .roomNumber(5230)
                         .capacity(20)
                         .bookedDates(new ArrayList<>())
                         .build(),
 
                 RoomDTO.builder()
                         .building(building)
-                        .roomNumber("5203")
+                        .roomNumber(5203)
                         .capacity(20)
                         .bookedDates(new ArrayList<>())
                         .build()
@@ -121,19 +121,19 @@ class BookingServiceTest {
     private static Stream<Arguments> provideCorrectRooms(){
         return Stream.of(
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("5300")
+                        .roomNumber(5300)
                         .capacity(23)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("6300")
+                        .roomNumber(6300)
                         .capacity(25)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("5321")
+                        .roomNumber(5321)
                         .capacity(26)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("6530")
+                        .roomNumber(6530)
                         .capacity(15)
                         .build())
         );
@@ -141,19 +141,19 @@ class BookingServiceTest {
     private static Stream<Arguments> provideWrongRooms(){
         return Stream.of(
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("7300")
+                        .roomNumber(7300)
                         .capacity(23)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("3300")
+                        .roomNumber(3300)
                         .capacity(25)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("1000")
+                        .roomNumber(1000)
                         .capacity(26)
                         .build()),
                 Arguments.of(RoomDTO.builder()
-                        .roomNumber("5320")
+                        .roomNumber(5320)
                         .capacity(15)
                         .build())
         );
