@@ -58,10 +58,10 @@ public class BookingService implements BookingServiceInterface {
 
     @Override
     public RoomDTO addRoom(RoomDTO roomDTO) {
-        if(!roomDTO.getRoomNumber().matches(ROOM_NUMBER_PATTERN)){
+        if(!roomDTO.getRoomNumber().toString().matches(ROOM_NUMBER_PATTERN)){
             throw new InvalidRoomNumberException();
         }
-        if(roomDTO.getRoomNumber().charAt(0)=='6'){
+        if(roomDTO.getRoomNumber().toString().charAt(0)=='6'){
             roomDTO.setBuilding("ABF");
         }
         else{

@@ -16,10 +16,10 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-@Table(name = "room_booking")
+@Table(name = "room_booking_bac_abf")
 public class RoomDTO {
     @Id
-    private String roomNumber;
+    private Integer roomNumber;
     private String building;
     private int capacity;
     @OneToMany(mappedBy = "assignedRoom")

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "booking_date")
+@Table(name = "booking_datedto")
 public class BookedDateDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
