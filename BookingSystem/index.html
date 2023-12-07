@@ -222,6 +222,89 @@
 
     <!-- JavaScript for scrolling down to the form -->
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Event listener for building select change
+        document
+          .getElementById("buildingSelect")
+          .addEventListener("change", function () {
+            var selectedBuilding = this.value;
+            fetchRoomsForBuilding(selectedBuilding);
+          });
+      });
+
+      function fetchRoomsForBuilding(building) {
+        fetch(
+          `https://localhost:8080/getallroomsbybuilding?building=${building}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            updateRoomSelect(data);
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      function fetchRoomsForBuilding(building) {
+        fetch(`https://localhost:8080//api/rooms?building=${building}`)
+          .then((response) => response.json())
+          .then((data) => {
+            updateRoomSelect(data);
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      function submitForm() {
+        var bookingRequestDTO = {
+          // Populate this object with data from your form
+          // Example: building: selectedBuilding, room: selectedRoom, ...
+        };
+
+        fetch("https:///localhost:8080//bookroom", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookingRequestDTO),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle successful booking
+            // You might want to show a success message or redirect the user
+          })
+          .catch((error) => {
+            // Handle error
+            console.error("Error booking room:", error);
+          });
+
+        return false; // Prevent the default form submission
+      }
+
+      function addRoom(roomDTO) {
+        fetch("https:///localhost:8080//addroom", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(roomDTO),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle successful addition of the room
+          })
+          .catch((error) => {
+            console.error("Error adding room:", error);
+          });
+      }
+
+      function updateRoomSelect(rooms) {
+        var roomSelect = document.getElementById("roomSelect");
+        roomSelect.innerHTML = ""; // Clear existing options
+        rooms.forEach((room) => {
+          var option = document.createElement("option");
+          option.value = room.id;
+          option.textContent = room.name;
+          roomSelect.appendChild(option);
+        });
+      }
       function submitForm() {
         // Validate form fields
         var form = document.getElementById("bookingForm");
