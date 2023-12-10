@@ -6,7 +6,10 @@ import com.cos3015a.project.dto.requestdtos.BookingRequestDTO;
 import com.cos3015a.project.exceptionhandler.exception.RoomNotFoundException;
 import com.cos3015a.project.exceptionhandler.exception.RoomTimeNotAvailableException;
 import com.cos3015a.project.service.BookingServiceInterface;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingController {
 
+    public BookingController(){
+
+        this.bookingServiceInterface = null; x
+    }
     private final BookingServiceInterface bookingServiceInterface;
 
     @GetMapping("/getallrooms")
