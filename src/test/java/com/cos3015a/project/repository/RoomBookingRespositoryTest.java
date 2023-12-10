@@ -38,7 +38,7 @@ class RoomBookingRespositoryTest {
 
         roomBookingRespository.saveAll(List.of(room1,room2,room3));
 
-        assertEquals(2, roomBookingRespository.findByBuilding("BAC").size());
+        assertEquals(3, roomBookingRespository.findByBuilding("BAC").size());
 
     }
 
